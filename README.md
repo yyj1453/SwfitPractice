@@ -26,3 +26,52 @@
 >      var classInstance: SomeClass = SomeClass()
 >      ```
 >    * 구조체는 상속이 불가능하지만 처리속도가 빠름, 클래스는 상속이 가능하지만 처리속도가 구조체에 비해 느림
+> 2. Property and Method
+>    * 클래스나 구조체 내부의 맴버변수를 프로퍼티, 함수는 메소드라고 지칭
+>    * 프로퍼티에 접근을 돕는 getter와 setter가 존재
+>      ```
+>      struct SomeStruct {
+>          var a: Int
+>          var b: Int
+>          var opposite: SomeStruct {
+>              get {
+>                  return SomeStruct(a: -a, b: -b)
+>              }
+>              set {
+>                  a = -newValue.a
+>                  b = -newValue.b
+>              }
+>          }
+>      }
+>      var structInstance: SomeStruct = SomeStruct(a: 10, b: 20)
+>      print(structInstance.opposite)
+>      structInstance.opposite = SomeStruct(a: 15, b: 25)
+>      ```
+>    * 메소드를 통해 프로퍼티 접근 등 여러 동작을 수행 가능
+>      ```
+>      class SomeClass {
+>          var a: Int = 10
+>          func numUp() {
+>              a += 5
+>          }
+>          func numDown() {
+>              a -= 5
+>          }
+>      }
+>      var classInstance: SomeClass = SomeClass()
+>      classInstance.numUp()
+>      classInstance.numDown()
+>      ```
+>    * 클래스가 아닌 구조체나 열거형의 경우 내부 프로퍼티 값을 바꾸는 메소드에는 mutating 키워드가 필요함
+>      ```
+>      mutating func someFunc() {...}
+>      ```
+>    * 메소드 내부의 self 키워드는 해당 클래스, 구조체, 열거형으로 만들어진 객체(인스턴스)를 지칭함
+>      ```
+>      class SomeClass {
+>          var num1: Int = 0
+>          func change(to num1: Int) {
+>              self.num1 = num1
+>          }
+>      }
+>      ```
