@@ -198,3 +198,43 @@
 >          print(i)
 >      }
 >      ```
+> 7. Map, Filter, Reduce
+>    * Map은 배열의 각각 요소에 특정 작업을 수행후 다시 배열 형태로 반환하는 메소드
+>      ```
+>      let numbers: [Int] = [0, 1, 2, 3, 4]
+>      var doubleNumbers: [Int] = [Int]()
+>      var strings: [String] = [String]()
+>
+>      doubleNumbers = numbers.map({ (number: Int) -> Int in
+>          return number * 2
+>      })
+>      strings = numbers.map({ (number: Int) -> String in
+>          return "\(number)"
+>      })
+>      ```
+>    * Filter는 배열에서 특정 조건에 부합하는 요소들만 골라 다시 배열로 반환하는 메소드
+>      ```
+>      let numbers: [Int] = [0, 1, 2, 3, 4]
+>      let evenNumbers: [Int] = numbers.filter{ (number: Int) -> Bool in
+>          return number % 2 == 0
+>      }
+>      let oddNumbers: [Int] = numbers.filter{ $0 % 2 == 1 }
+>      ```
+>    * Reduce는 배열에서 특정 작업후 나온 값을 누적 시킨후 특정한 타입으로 한 값을 반환하는 메소드
+>      ```
+>      // reduce(초기값, { (누적값을 담을변수, 다음 요소를 담을 변수) -> 특정타입 in 특정작업 })
+>      let numbers: [Int] = [1, 2, 3]
+>      var sum: Int = numbers.reduce(0, { (result: Int, next: Int) -> Int in
+>          print("\(result) + \(next)")
+>          // 0 + 1
+>          // 1 + 2
+>          // 3 + 3
+>          return result + next
+>      })
+>      ```
+>    * Map, Filter, Reduce 종합 예제
+>      ```
+>      let numbers: [Int] = [1, 2, 3, 4, 5, 6, 7]
+>      var result: Int = numbers.filter{ $0.isMultiple(of: 2) }.map{ $0 * 3 }.reduce(0){ $0 + $1 }
+>      // 짝수만 걸러내어 3을 곱한 후 누적하여 더하기
+>      ```
