@@ -302,3 +302,58 @@
 >      classInstance[1] = 20
 >      print(classInstance[1])  // 20
 >      ```
+> 10. Inheritance
+>    * 하나의 클래스가 다른클래스의 정보를 받아오는 것을 상속이라함
+>    * 상속 기본 문법
+>      ```
+>      class 자식클래스: 부모클래스 {
+>          프로퍼티와 메소드
+>      }
+>      ```
+>    * override란? <br/>
+>      -> 부모클래스에서 정의된 맴버들을 자식클래스에서 재정의하는 것을 의미함
+>      ```
+>      class Person {
+>          var name: String = ""
+>          func introduce() -> String {
+>              return "안녕하세요, 제 이름은 \(self.name) 입니다."
+>          }
+>      }
+>      class Youngjin: Person {
+>          override var name: String = "윤영진"
+>          override func intrduce() -> String {
+>              return "안녕하세요, 제 이름은 윤영진 입니다."
+>          }
+>      }
+>      ```
+>    * 부모클래스에서 맴버에 final이라는 키워드를 쓰면 자식클래스에서 재정의가 불가능함
+>    * class를 선언할 때 class 앞에 final 키워드를 쓰면 해당 클래스는 상속이 불가능함
+>    * 지정 이니셜라이저와 편의 이니셜라이저란? <br/>
+>      -> 지정 이니셜라이저는 인스턴스를 초기화하는 주된 역할을 가지고 있으면 init 키워드를 이용하여 선언, <br/>
+>      -> 편의 이니셜라이저는 다른 이니셜라이저를 통해 초기화 기회를 보다 편리하게 제공하고 convenience 키워드를 이용하여 선언
+>    * 지정 이니셜라이저와 편의 이니셜라이저 사이의 규칙
+>      1. 자식클래스의 지정 이니셜라이저는 부모클래스의 지정 이니셜라이저를 반드시 호출해야함
+>      2. 편의 이니셜라이저는 자신을 정의한 클래스의 다른 이니셜라이저를 반드시 호출해야함
+>      3. 편의 이니셜라이저는 궁극적으로 지정 이니셜라이저를 반드시 호출해야함
+>    * 지정 이니셜라이저와 편의 이니셜라이저의 간단한 예제
+>      ```
+>      class Person {
+>          var name: String
+>          var age: Int
+>          init(name: String, age: int) {
+>              self.name = name
+>              self.age = age
+>          }
+>      }
+>      class Student: Person {
+>          var major: String
+>          init(name: String, age: Int, major: String) {
+>              self.major = "Swift"
+>              super.init(name: name, age: age)
+>          }
+>          convenience init(name: String) {
+>              self.init(name: name, age: 24, major: "Kotlin")
+>          }
+>      }
+>      ```
+>    * 부모클래스의 이니셜라이저 앞에 required 키워드를 사용하면 자식클래스에서 반드시 다시 언급을 해줘야함
