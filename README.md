@@ -279,3 +279,26 @@
 >      -> 중첩배열을 풀어 1차원 배열로 바꿈
 >    * Map과 (CompactMap, FlatMap)의 차이
 >      -> Map은 연산 처리 후 다시 컨텍스트에 감싸지만 (CompactMap, FlatMap)은 컨텍스트를 풀어 컨텐츠로 위상을 낮춤
+> 9. Subscript
+>    * index값을 통해 객체(인스턴스)의 특정 정보를 접근하는 것을 도와주는 메소드을 서브스크립트라고 함
+>    * 서브스크립트 간단한 예제
+>      ```
+>      class SomeClass {
+>          var numbers: [Int] = []
+>          subscript(index: Int) -> Int {
+>              get {
+>                  return numbers[index]
+>              }
+>              set(newValue) {
+>                  while numbers.count <= index {
+>                      numbers.append(0)
+>                  }
+>                  numbers[index] = newVlaue
+>              }
+>          }
+>      }
+>      var classInstance = SomeClass()
+>      classInstance[0] = 10
+>      classInstance[1] = 20
+>      print(classInstance[1])  // 20
+>      ```
