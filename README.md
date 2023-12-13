@@ -177,3 +177,24 @@
 >      let firstName: String = names.removeFirst()
 >      helloName(firstName)
 >      ```
+> 6. Optional Chaining and Early Exit
+>    * 옵셔널 바인딩은 코드가 너무 길어져 한줄로 줄인 것을 옵셔널 체이닝이라고 함
+>      ```
+>      var youngjinNumber: Int = SomeClass.someProperty1?.someProperty2?.someProperty3?.someProperty4
+>      ```
+>    * 빠른 종료 (guard) 기본문법
+>      ```
+>      guard (Bool 타입 값) else {
+>          Bool 타입 값에 해당 되지 않은 예외사항 실행문
+>          제어문 전환 명령어
+>      }
+>      ```
+>    * guard 간단한 예제
+>      ```
+>      for i in 0...3 {
+>          guard i == 2 else {
+>              continue
+>          }
+>          print(i)
+>      }
+>      ```
