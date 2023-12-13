@@ -75,3 +75,31 @@
 >          }
 >      }
 >      ```
+> 3. Instance Create and Extinction
+>    * 생성자를 통해 초기 프로퍼티의 값을 설정 가능
+>      ```
+>      class SomeClass {
+>          var a: Int
+>          var b: Int
+>          init(num1: Int, num2: Int) {
+>              a = num1
+>              b = num2
+>          }
+>      }
+>      var classInstance: SomeClass = SomeClass(num1: 10, num2: 20)
+>      ```
+>    * 소멸자를 통해 메모리 참조 해제 시 원하는 동장 가능
+>      ```
+>      class SomeClass {
+>          var a: Int
+>          init(num1: Int) {
+>              a = num1
+>          }
+>          deinit {
+>            print("Deinit Instance")
+>          }
+>      }
+>      var classInstacne: SomeClass = SomeClass()
+>      classInstance = nil
+>      ```
+>   
