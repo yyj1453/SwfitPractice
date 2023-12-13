@@ -383,4 +383,39 @@
 >          print("fail...")
 >      }
 >      ```
->      
+> 12. Protocol
+>    * 프로토콜이란? <br/>
+>      -> 특정 기능을 수행하기 위한 프로퍼티, 메소드, 이니셜라이저 등의 청사진
+>    * 프로토콜에서 프로퍼티를 요구할때 get 또는 set 키워드를 이용하면 해당 변수를 변경 가능여부를 정할 수 있음
+>    * 프로토콜끼리 상속받을 때 class 키워드를 이용하면 클래스 전용 프로토콜로 설정 가능
+>    * 프로토콜 간단한 예제
+>      ```
+>      protocol SomeProtocol1 {
+>          var name: String { get }
+>          var age: Int { get set }
+>      }
+>      protocol SomeProtocol2: class, SomeProtocol1 {
+>          var major: String { get set }
+>          init(name: String)
+>      }
+>      class Person: SomeProtocol2 {
+>          var name: String
+>          var age: Int
+>          var major: String
+>          init(name: String) {
+>              self.name = name
+>              self.age = 24
+>              self.major = "Swift"
+>          }
+>      }
+>      ```
+>    * @objc와 optional 키워드를 이용하면 선택적 요구가 가능
+>      ```
+>      @objc protocol SomeProtocol {
+>          var name: String { get set }
+>          @objc optional var age: Int { get set }
+>      }
+>      class Person: SomeProtocol {
+>          var name: String = ""
+>      }
+>      ```
