@@ -102,4 +102,13 @@
 >      var classInstacne: SomeClass = SomeClass()
 >      classInstance = nil
 >      ```
->   
+> 4. Access Control
+>    * 접근수준을 명시할 수 있는 키워드는 open, public, internal, fileprivate, private 다섯 가지가 있음
+>      |키워드|범위|
+>      |:-----:|:----:|
+>      |open|모듈 외부까지|
+>      |public|모듈 외부까지|
+>      |internal|모듈 내부|
+>      |fileprivate|파일 내부|
+>      |private|기능 정의 내부|
+>    * open은 클래스에서만 사용가능
