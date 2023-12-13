@@ -238,3 +238,44 @@
 >      var result: Int = numbers.filter{ $0.isMultiple(of: 2) }.map{ $0 * 3 }.reduce(0){ $0 + $1 }
 >      // 짝수만 걸러내어 3을 곱한 후 누적하여 더하기
 >      ```
+> 8. Monad
+>    * 모나드란? <br/>
+>      -> 어떤 값을 감싸고 그 값을 조작하는 일련의 연산을 캡슐화하는 디자인 패턴 (옵셔널과 연관이 깊음)
+>    * 모나드가 갖춰야 하는 조건
+>      1. 타입을 인자로 받는 타입
+>      2. 특정 타입의 값을 포장한 것을 반환하는 함수가 존재
+>      3. 포장된 값을 반환하여 같은 형태로 포장하는 함수가 존재
+>    * 컨텍스트(Context)와 컨텐츠(Contents)란?
+>      |Context|Contents|
+>      |:-----:|:------:|
+>      |물건을 담는 상자|상자안의 내용물|
+>    * 옵셔널의 개념 (옵셔널은 열거형으로 정의) <br/>
+>      1. 옵셔널은 하나의 컨텍스트(Context)
+>      2. Optional(2)는 옵셔널이라는 컨텍스트(Context)안에 2라는 컨텐츠(Contents)가 담겨있음을 의미
+>      3. var a: Int? = nil은 옵셔널이라는 컨텍스트에 아무런 컨텐츠가 없음을 의미
+>      4. 옵셔널은 Wrapped 타입을 받는 (제네릭)타입 -> 타입을 인자로 받는 타입 -> 모나드 조건 1번 <br/>
+>         var a: Int?에서 Int?는 옵셔널 타입이고 ?가 붙기전 Int를 Wrapped타입이라고 함
+>      5. 옵셔널 타입은 Optional<Int>.init(2)처럼 다른 타입(Int)의 값을 갖는 상태의 컨텍스트를 생성(반환) 가능 -> 모나드 조건 2번
+>    * 컨텍스트와 컨테츠에 대한 간단한 예제
+>      ```
+>      func addThree(_ num: Int) -> Int {
+>          return num + 3
+>      }
+>      print(addThree(2))
+>      print(addThree(Optional(2)))  // 오류 발생!!
+>      // addThree라는 함수는 전달인자로 컨텐츠(Contents)를 받음
+>      // Optioanl이라는 컨텍스트로 포장된 것을 전달인자로 보내면 오류가 발생함
+>      print(Optional(2).map(addThree))  // Optional(5)
+>      /*
+>          ※ Optional(2).map(addThree) 실행과정
+>            1. 옵셔널이라는 컨텍스트(Context)에서 2라는 컨텐츠(Contents)를 추출
+>            2. map 메소드를 통해 전달받은 addThree 함수 적용
+>            3. 결과 값인 5를 다시 옵셔널이라는 컨텍스트(Context)에 담아 반환
+>      */
+>      ```
+>    * CompactMap란?
+>      -> 배열에서 요소의 값이 nil이 아닌 요소들만 모아 다시 배열 생성
+>    * FlatMap란?
+>      -> 중첩배열을 풀어 1차원 배열로 바꿈
+>    * Map과 (CompactMap, FlatMap)의 차이
+>      -> Map은 연산 처리 후 다시 컨텍스트에 감싸지만 (CompactMap, FlatMap)은 컨텍스트를 풀어 컨텐츠로 위상을 낮춤
