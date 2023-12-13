@@ -357,3 +357,30 @@
 >      }
 >      ```
 >    * 부모클래스의 이니셜라이저 앞에 required 키워드를 사용하면 자식클래스에서 반드시 다시 언급을 해줘야함
+> 11. Type Casting
+>    * 특정한 타입을 가진 변수의 타입을 다른 타입으로 바꾸는 것을 타입 캐스팅이라고 함
+>      ```
+>      var num1: Double = 5.5
+>      var num2: Int = Int(num1)
+>      print(num2)  // 5
+>      ```
+>    * is 키워드를 사용하면 해당 변수의 타입을 확인할 수 있음
+>      ```
+>      var num: Int = 10
+>      print(num is Int)  // true
+>      print(num is Double)  // false
+>      ```
+>    * 다운 캐스팅이란? <br/>
+>      -> 부모클래스의 객체를 하위클래스로 형변환하는 것을 의미
+>    * 다운 캐스팅의 간단한 예제
+>      ```
+>      class Person { }
+>      class Youngjin: Person { }
+>      let person: Person = Youngjin()
+>      if let youngjin1 = person as? Youngjin {
+>          print("Success!")
+>      } else {
+>          print("fail...")
+>      }
+>      ```
+>      
