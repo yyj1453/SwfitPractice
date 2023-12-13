@@ -112,3 +112,68 @@
 >      |fileprivate|파일 내부|
 >      |private|기능 정의 내부|
 >    * open은 클래스에서만 사용가능
+> 5. Closure
+>    * 클로저는 함수와 비슷한 코드형태의 블록
+>    * 변수나 상수로 저장이 가능하고 함수 인자로도 전달 가능
+>    * 클로저의 기본 형태는 다음과 같다
+>      ```
+>      { (매개변수) -> 반환타입 in
+>          실행코드
+>      }
+>      ```
+>    * 클로저는 몇가지의 키워드로 축약이 가능하다
+>      ```
+>      let names: [String] = ["youngjin1", "youngjin2", "youngjin3"]
+>
+>      // 1. 전달인자의 타입과 반환타입을 안적어 줘도 알아서 추측함
+>      let reversed1: [String] = names.sorted { (first, second) in
+>          return first > second
+>      }
+>
+>      // 2. 전달인자를 $0, $1, $2, ... 순으로 표현 가능
+>      let reversed2: [String] = names.sorted {
+>          return $0 > $1
+>      }
+>
+>      // 3. return을 안적어줘도 암시적으로 반환
+>      let reversed3: [String] = names.sorted { $0 > $1 }
+>
+>      // 4. > 함수를 클로저로서 함수 안에서 사용 가능
+>      let reversed4: [String] = names.sorted(by: >)
+>      ```
+>    * 반환 값을 특정 함수로 지정 가능
+>      ```
+>      func makeIncrementer(forIncrement amount: Int) -> (() -> Int) {
+>          var runningTotal = 0
+>          func incrementer() -> Int {
+>              runningTotal += amount
+>              return runningTotal
+>          }
+>          return incrementer
+>      }
+>      let incrementerByTwo: (() -> Int) = makeIncrementer(forIncrement: 2)
+>      ```
+>    * 전달인자로 클로저를 받는 함수가 있을 때 클로저가 함수 외부에서도 호출이 될려면 탈출클로저가 필요함
+>      ```
+>      typealias VoidVoidClosure = () -> Void
+>      let firstClosure: VoidVoidClosure = {
+>          print("Closure A")
+>      }
+>      let secondClosure: VoidVoidClosure = {
+>          print("Closure B")
+>      }
+>      func returnOneClosure(first: @escaping VoidVoidClosure, second: @escaping VoidVoidClosure, shouldReturnFirstClosure: Bool) -> VoidVoidClosure {
+>          return shouldReturnFirstClosure ? first : second
+>      }
+>      let returnedClosure: VoidVoidClosure = returnOneClosure(first: firstClosure, second: secondClosure, shouldReturnFirstClosure: true)
+>      returnedClosure()
+>      ```
+>    * 특정 타입을 받아 자동으로 클로저로 변환해주는 기능도 있음
+>      ```
+>      var names: [String] = ["youngjin1", "youngjin2", "youngjin3"]
+>      func helloName(_ name: @autoclosure () -> String) {
+>          print("Hello \(name())!")
+>      }
+>      let firstName: String = names.removeFirst()
+>      helloName(firstName)
+>      ```
