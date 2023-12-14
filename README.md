@@ -566,3 +566,12 @@
 >         }
 >         // case 1...10 where number % 2 == 1에서 ~=연산자가 사용됨
 >         ```
+> 18. Where
+>    * where 키워드는 특정 구문에서 제약을 추가하기 위해 사용
+>    * 간단한 예제
+>      ```
+>      let optionalArray: [Int?] = [nil, 2, 3, nil, 5]
+>      for case let number? in optionalArray where number > 2 {
+>          print("Found a \(number)")
+>      }
+>      ```
