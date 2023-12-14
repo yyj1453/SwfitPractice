@@ -448,3 +448,28 @@
 >      var stringStack: Stack<String> = Stack<String>()
 >      var anyStack: Stack<Any> = Stack<Any>()
 >      ```
+> 15. Protocol Oriented Language
+>    * 스위프트는 프로토콜 지향 언어로서 많은 구조체, 클래스, 열거형 등의 프로토콜이 있고 이를 지향함
+>    * 프로토콜을 준수하는 스택 알고리즘 구현
+>      ```
+>      protocol StackProtocol {
+>          associated type ItemType
+>          var items = [ItemType] { get set }
+>          mutating func push(_ item: ItemType)
+>          mutating func pop() -> ItemType?
+>      }
+>      extension StackProtocol {
+>          mutating func push(_ item: ItemType) {
+>              items.append(item)
+>          }
+>          mutating func pop() -> ItemType? {
+>              return items.removeLast()
+>          }
+>      }
+>      struct Stack<Element>: StackProtocol {
+>          var items: [Element] = [Element]()
+>      }
+>      var doubleStack: Stack<Double> = Stack<Double>()
+>      var stringStack: Stack<String> = Stack<String>()
+>      var anyStack: Stack<Any> = Stack<Any>()
+>      ```
