@@ -595,3 +595,52 @@
 >      3. 미소유참조 <br/>
 >         -> 약한 참조와 비슷하지만 자신이 참조하고있는 메모리가 해제되면 자신의 메모리도 해제된다는 차이가 있음
 >
+> 20. Error Handling
+>    * 오류 처리 방식으로는 Throw, Do-Catch, Rethrow가 있고 후처리 방식으로 Defer가 있음
+>    * Throw, Do-Catch 방식을 이용한 간단한 예제
+>      ```
+>      enum InputError: Error {
+>          case negativeNumber
+>      }
+>      func processNumber(_ number: Int) throws {
+>          if number < 0 {
+>              throw InputError.negativeNumber
+>          } else {
+>              print(number)
+>          }
+>      }
+>      do {
+>          try processNumber(10)
+>          try processNumber(-5)
+>      } catch InputError.negativeNumber {
+>          print("음수")
+>      } catch {
+>          print("기타 오류 발생")
+>      }
+>      ```
+>      -> throw기능이 있는 함수는 선언할 때 전달인자 소괄호 뒤에 throws라는 키워드가 필요함
+>   * Rethrow 방식은 이름 그대로 던져진 오류를 받아 처리후 또 오류가 발생 시 다시 오류를 던지는 방식임 (rethrows 키워드 필요)
+>   * 오류발생 시 함수는 오류를 던지고 그 즉시 함수 블록을 탈출한다, 탈출하기 직전에 꼭 실행시킬 코드를 작성해줄 수 있다면 defer문으로 작성이 가능
+>     ```
+>     func someThrowingFunction(shouldThrowError: Bool) throws -> Int {
+>         defer {
+>             print("First")
+>         }
+>         if shouldThrowError {
+>             enum SomeError: Error {
+>                 case justSomeError
+>             }
+>             throw SomeError.justSomeError
+>         }
+>         defer {
+>             print("Second")
+>         }
+>         defer {
+>             print("Third")
+>         }
+>         return 100
+>     }
+>     try? someThrowingFunction(shouldThrowError: true)  // First
+>     try? someThrowingFunction(shouldThrowError: false)  // 100 Third Second First
+>     ```
+>     -> Defer문은 메모리 누수 방지를 위해 역순으로 작동한다
