@@ -473,3 +473,96 @@
 >      var stringStack: Stack<String> = Stack<String>()
 >      var anyStack: Stack<Any> = Stack<Any>()
 >      ```
+> 16. Nested Type
+>    * 열거형, 구조체, 클래스 안에 또 다른 열거형, 구조체, 클래스를 선언할 수 있음
+>    * 같은 이름의 내부 열거형, 구조체, 클래스를 사용해야 할 때 용이 (가독성 증가)
+>    * 간단한 예제
+>      ```
+>      struct Sports {
+>          enum GameType {
+>              case football, basketball
+>          }
+>      }
+>      struct ESports {
+>          enum GameType {
+>              case online, offline
+>          }
+>      }
+>      ```
+> 17. Pattern
+>    * 스위프트에는 문법에 응용할 수 있는 패턴들이 존재
+>      1. 값을 해제(추출)하거나 무시하는 패턴<br/>
+>         ex) 와일드카드, 식별자, 값 바인딩, 튜플
+>      3. 패턴 매칭을 위한 패턴<br/>
+>         ex) 열거형 케이스, 옵셔널, 타입캐스팅, 표현
+>    * 각각 패턴 설명
+>      1. 와일드 카드 패턴 <br/>
+>         -> _ 키워드를 사용하여 뭐든 받을 수 있음
+>         ```
+>         let string: String = "ABC"
+>         switch string {
+>         case _:
+>             print(string)
+>         }
+>         ```
+>      2. 식별자 패턴 <br/>
+>         -> 데이터 타입 식별자와 값의 타입을 일치시키는 것을 의미함
+>         ```
+>         let someInt: Int = 10
+>         let someDouble: Double = 10.0
+>         let someString: String = "String"
+>         ```
+>      3. 값 바인딩 패턴 <br/>
+>         -> 변수의 속성을 이용해 연결해주는 것을 의미함
+>         ```
+>         let youngjin = ("youngjin", 24, "Male")
+>         switch youngjin {
+>         case let (name, age, gender):
+>             print("Name: \(name), Age: \(age), Gender: \(gender)")
+>         }
+>         ```
+>      4. 튜플 패턴 <br/>
+>         -> 소괄호 내에 쉽표를 이용하여 일종의 리스트를 만드는 것을 의미함
+>         ```
+>         let youngjin = ("youngjin", 24, "Male")
+>         // 소괄호 내에는 서로 다른 타입의 값을 넣어도 됨
+>         ```
+>      5. 열거형 케이스 패턴 <br/>
+>         -> 값과 케이스의 타입을 같게 하는 것을 의미함
+>         ```
+>         let string: String = "ABC"
+>         switch string {
+>         case "CBA":
+>             print("CBA")
+>         case "ABC":
+>             print("ABC")
+>         }
+>         ```
+>      6. 옵셔널 패턴 <br/>
+>         -> ? 키워드를 이용하여 nil의 가능성여부와 매치 시키는 것을 의미함
+>         ```
+>         var optionalValue: Int? = 100
+>         var anotherVlaue: Int? = optionalValue
+>         ```
+>      7. 타입 캐스팅 패턴 <br/>
+>         -> is 또는 as 키워드를 사용하여 타입 캐스팅 여부를 판단하는 것을 의미함
+>         ```
+>         let someValue: Any = 100
+>         switch someValue {
+>         case is String: print("String")
+>         case let value as Int: print(value + 1)
+>         default: print("둘다 아님")
+>         }
+>         ```
+>      8. 표현 패턴 <br/>
+>         -> ~= 연산자를 이용하여 범위나 특정 조건에 부합하는지 판단하는 것을 의미함
+>         ```
+>         let number = 7
+>         switch number {
+>         case 1...10 where number % 2 == 1;
+>             print("홀수입니다.)
+>         default:
+>             print(" 짝수 또는 범위를 벗어남)
+>         }
+>         // case 1...10 where number % 2 == 1에서 ~=연산자가 사용됨
+>         ```
