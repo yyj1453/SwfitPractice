@@ -644,3 +644,16 @@
 >     try? someThrowingFunction(shouldThrowError: false)  // 100 Third Second First
 >     ```
 >     -> Defer문은 메모리 누수 방지를 위해 역순으로 작동한다
+> 21. Memory Safety
+>    * 코드를 짜고 실행하다보면 메모리 접근 충돌이 일어날 수 있는데 3가지 경우 충돌이 발생
+>      1. 최소한 한 곳에서 쓰기 접근
+>      2. 같은 메모리 위치에 접근
+>      3. 접근 타이밍이 겹침
+>    * 메모리 접근 충돌 예제
+>      ```
+>      var step: Int = 1
+>      func increment(_ number: inout Int) {
+>          number += step
+>      }
+>      increment(&step)  // 전달인자로 step을 참조(장기적)하고 있는데 함수 내부에서 step을 한번더 참조함
+>      ```
