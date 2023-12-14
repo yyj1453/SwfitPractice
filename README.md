@@ -419,3 +419,32 @@
 >          var name: String = ""
 >      }
 >      ```
+> 13. Extension
+>    * extension 키워드를 통해 프로토콜, 클래스, 구조체, 열거형에 프로퍼티, 메소드 등를 추가할 수 있음
+>    * 상속은 기존 클래스에 기능을 추가해서 새로운 클래스를 만드는 반면 확장은 그냥 기능 추가하기만 함
+>    * 간단한 예제
+>      ```
+>      protocol SomeProtocol { var a: Int }
+>      extension SomeProtocol { var b: Int }
+>      class SomeClass: SomeProtocol {
+>          var a: Int = 10
+>          var b: Int = 20
+>      }
+>      ```
+> 14. Generic
+>    * 타입을 일반화 하여 어느 타입에든 적용할 수 있는 방식을 제네릭이라고 함
+>    * 제네릭을 이용하여 스택 알고리즘 구현
+>      ```
+>      struct Stack<Element> {
+>          var items = [Element]()
+>          mutating func push(_ item: Element) {
+>              items.append(item)
+>          }
+>          mutating func pop() -> Element {
+>              return items.removeLast()
+>          }
+>      }
+>      var doubleStack: Stack<Double> = Stack<Double>()
+>      var stringStack: Stack<String> = Stack<String>()
+>      var anyStack: Stack<Any> = Stack<Any>()
+>      ```
