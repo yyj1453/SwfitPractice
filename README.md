@@ -657,3 +657,14 @@
 >      }
 >      increment(&step)  // 전달인자로 step을 참조(장기적)하고 있는데 함수 내부에서 step을 한번더 참조함
 >      ```
+> 22. Opaque Type
+>    * 불명확 타입은 반환할 때 타입을 정확하게 정하지 않을때 사용 (some 키워드 사용)
+>      ```
+>      protocol SomeProtocol { }
+>      struct SomeStruct1: SomeProtocol { }
+>      struct SomeStruct2 {
+>          func someFunc() -> some SomeProtocol {
+>              return SomeStruct1
+>          }
+>      }
+>      ```
