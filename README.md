@@ -575,3 +575,23 @@
 >          print("Found a \(number)")
 >      }
 >      ```
+> 19. ARC
+>    * 스위프트의 메모리 관리 기법으로 더이상 필요하지 않은 클래스의 인스턴스를 메모리에서 해제하는 기능
+>    * 클래스는 메모리 참조 방식으로 강한참조, 약한참조, 미소유참조 방식이 있음
+>      1. 강한참조
+>         ```
+>         class SomeClass { }
+>         var someInstance: SomeClass = SomeClass()  // SomeClass 참조횟수: 1
+>         someInstance = nil  // SomeClass 참조횟수: 0
+>         ```
+>      2. 약한참조
+>         ```
+>         class SomeClass1 { var a: Int = 10 }
+>         class SomeClass2 { weak var b: Int = 0 }
+>         var someInstance1: SomeClass1 = SomeClass1()  // SomeClass1 참조횟수: 1
+>         var someInstance2: SomeClass2 = SomeClass2()  // SomeClass2 참조횟수: 1
+>         someInstace2.b = someInstance1.a  // SomeClass1 참조횟수가 증가하지 않음
+>         ```
+>      3. 미소유참조 <br/>
+>         -> 약한 참조와 비슷하지만 자신이 참조하고있는 메모리가 해제되면 자신의 메모리도 해제된다는 차이가 있음
+>
