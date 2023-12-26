@@ -11,6 +11,8 @@
 >    * 코드를 복사 후 온라인 컴파일러에 붙여넣기를 해 결과화면을 확인
 > 2. VSCode
 >    * VSCode 설치: <https://code.visualstudio.com>
+>    * Extension에서 Swift를 설치
+>    * 파일 확장자에 '.swift' 키워드를 사용하면 컴파일 가능
 
 ### Study Detail
 > 1. Struct and Class
