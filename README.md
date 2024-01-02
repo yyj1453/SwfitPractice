@@ -15,6 +15,8 @@
 >    * 파일 확장자에 '.swift' 키워드를 사용하면 컴파일 가능
 
 ### Study Detail
+> * Tistory 참조
+>   링크: <https://yyj1453.tistory.com/2>
 > 1. Struct and Class
 >    * 스위프트에는 객체의 설계도 역할을 하는 구조체, 클래스 등이 존재
 >    * struct, class 키워드로 선언 가능
