@@ -15,5 +15,5 @@
 >    * 파일 확장자에 '.swift' 키워드를 사용하면 컴파일 가능
 
 ### Study Detail
-> * Tistory 참조
+> * Tistory 참조 <br/>
 >   링크: <https://yyj1453.tistory.com/2>
